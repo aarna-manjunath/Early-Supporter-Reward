@@ -36,6 +36,7 @@
 Open `frontend/app.js` and update line 2:
 ```js
 const CONTRACT_ADDRESS = "PASTE_YOUR_CONTRACT_ADDRESS";
+```
 ---
 
 ## Step 4 — Run the Frontend
@@ -64,7 +65,6 @@ Or use VS Code Live Server for auto-reload.
 ```
 CONTRACT_ADDRESS = "COPY_FROM_REMIX_AFTER_DEPLOYMENT"
 ```
-
 ## Network Info
 ```
 RPC URL   : http://127.0.0.1:7545
