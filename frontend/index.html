@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EarlySupport — Reward Early Believers</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ── HEADER ─────────────────────────────────────────────── -->
+  <header>
+    <div class="logo">EarlySupport<span class="dot">.</span></div>
+    <div class="wallet-bar">
+      <span id="wallet-address">Not connected</span>
+      <button id="connect-btn" onclick="connectWallet()">Connect Wallet</button>
+    </div>
+  </header>
+
+  <!-- ── HERO ───────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Early <span class="accent">Supporters</span><br/>Get rewarded</h1>
+      <p>Support content before it goes viral</p>
+    </div>
+  </section>
+
+  <!-- ── MAIN GRID ───────────────────────────────────────────── -->
+  <main class="grid">
+
+    <!-- LEFT COLUMN -->
+    <div class="col-left">
+
+      <!-- Register Content Card -->
+      <div class="card" id="register-card">
+        <div class="card-label">Creator</div>
+        <h2>Register Content</h2>
+        <p class="card-desc">Add your content</p>
+        <div class="field">
+          <label>Title</label>
+          <input type="text" id="reg-title" placeholder="My new track, video, game..." />
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <input type="text" id="reg-hash" placeholder="e.g. 0xabc123..." />
+        </div>
+        <button class="btn-primary" onclick="registerContent()">Register content</button>
+        <div class="tx-status" id="reg-status"></div>
+      </div>
+
+      <!-- Support Content Card -->
+      <div class="card" id="support-card">
+        <div class="card-label">Support</div>
+        <h2>Early Support</h2>
+        <p class="card-desc">Send exactly 0.01 ETH to support. Max 3 only.</p>
+        <div class="field">
+          <label>Content ID</label>
+          <input type="number" id="sup-id" placeholder="Enter content ID" min="1"/>
+        </div>
+        <button class="btn-primary" onclick="supportContent()">Support for 0.01 ETH</button>
+        <div class="tx-status" id="sup-status"></div>
+      </div>
+
+      <!-- Mark Viral Card -->
+      <div class="card" id="viral-card">
+        <div class="card-label">Creator only</div>
+        <h2>Mark as Viral</h2>
+        <p class="card-desc">Triggers ETH distribution to all early supporters.</p>
+        <div class="field">
+          <label>Content ID</label>
+          <input type="number" id="viral-id" placeholder="Enter your content ID" min="1"/>
+        </div>
+        <button class="btn-accent" onclick="markViral()">Mark viral</button>
+        <div class="tx-status" id="viral-status"></div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col-right">
+
+      <!-- getSupporterCount Card -->
+      <div class="card" id="count-card">
+        <h2>Supporter Count</h2>
+        <p class="card-desc">Returns how many supporters have backed a particular content.</p>
+        <div class="field">
+          <label>Content ID</label>
+          <div class="input-row">
+            <input type="number" id="count-id" placeholder="Enter ID" min="1"/>
+            <button class="btn-small" onclick="fetchSupporterCount()">Fetch</button>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-value" id="count-result">—</div>
+            <div class="stat-label">Supporters (max 3)</div>
+          </div>
+        </div>
+        <div class="slots-label">Supporter slots (3 max)</div>
+        <div class="slots" id="slots-visual"><!-- filled by JS --></div>
+        <div class="tx-status" id="count-status"></div>
+      </div>
+
+      <!-- getPoolSize Card -->
+      <div class="card" id="pool-card">
+        <h2>Pool Size</h2>
+        <p class="card-desc">Returns the total ETH pooled for a particular content.</p>
+        <div class="field">
+          <label>Content ID</label>
+          <div class="input-row">
+            <input type="number" id="pool-id" placeholder="Enter ID" min="1"/>
+            <button class="btn-small" onclick="fetchPoolSize()">Fetch</button>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-value" id="pool-result">—</div>
+            <div class="stat-label">Pool (ETH)</div>
+          </div>
+        </div>
+        <div class="tx-status" id="pool-status"></div>
+      </div>
+
+      <!-- getSupporters Card -->
+      <div class="card" id="supporters-card">
+        <h2>Supporter Wallets</h2>
+        <p class="card-desc">Returns the ordered list of supporter wallet addresses.</p>
+        <div class="field">
+          <label>Content ID</label>
+          <div class="input-row">
+            <input type="number" id="supporters-id" placeholder="Enter ID" min="1"/>
+            <button class="btn-small" onclick="fetchSupporters()">Fetch</button>
+          </div>
+        </div>
+        <div class="wallet-list-label" id="wallet-list-label" style="display:none">Supporter wallets</div>
+        <div class="wallet-list" id="wallet-list"></div>
+        <div class="tx-status" id="supporters-status"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer>
+    <span>Built on Ganache · Solidity ^0.8.0 · ethers.js v6</span>
+  </footer>
+
+  <!-- ethers.js v6 CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
